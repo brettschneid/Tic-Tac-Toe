@@ -4,10 +4,12 @@ import java.util.Random;
 
 public class Game{
 
+// Method for displaying move options
     public static void printPositions() {
         System.out.println("1 2 3");
         System.out.println("4 5 6");
         System.out.println("7 8 9");
+        System.out.println("");
     }
 
 // Method for checking game board status (win/loss/draw)
@@ -65,7 +67,7 @@ public class Game{
             return 1;
         }  
 
-        if(board.getTop_Right(board) == board.getCenter_Center(board)       //I played and won by this win, and it did not trigger the player win message.
+        if(board.getTop_Right(board) == board.getCenter_Center(board)
         && board.getTop_Right(board) == board.getBottom_Left(board) 
         && board.getTop_Right(board) == "X"){
             return 1;
@@ -141,7 +143,7 @@ public class Game{
                 return board;
             }
             board.setTop_Left("X");
-            System.out.println(board);           //Since you wrote your toString() method for the board class, you can just say you're going to print board without invoking the method directly.
+            System.out.println(board);           
             return board;
 
             case "2":
@@ -238,168 +240,192 @@ public class Game{
     public static Board computer(Board board){
        
 // First, search for and fill any gaps. 
-        if(board.getTop_Left(board) == board.getTop_Center(board)       //I'm not exactly sure if this works as intended. If I make the play 1, 9, 5, it doesn't block me. It doesn't block in a lot of situations, and it just plays down the right column, especially if I start playing from the top or bottom row.
-        && board.getTop_Right(board) == "-"){                           //The computer also makes the same first move if I go on the top row, and makes the same first move for the middle and bottom rows.
-            board.setTop_Right("O");                                //I think some nested for loops could help condense this a bit, especially for the checks starting with the same square.
+        if(board.getTop_Left(board) == (board.getTop_Center(board)) 
+        && !(board.getTop_Left(board) == "-")
+        && board.getTop_Right(board) == "-"){
+            board.setTop_Right("O");                              
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Left(board) == board.getTop_Right(board) 
+        if(board.getTop_Left(board) == board.getTop_Right(board)
+        && !(board.getTop_Left(board) == "-") 
         && board.getTop_Center(board) == "-"){
             board.setTop_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Center(board) == board.getTop_Right(board) 
+        if(board.getTop_Center(board) == board.getTop_Right(board)
+        && !(board.getTop_Center(board) == "-") 
         && board.getTop_Left(board) == "-"){
             board.setTop_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Left(board) == board.getCenter_Center(board) 
+        if(board.getCenter_Left(board) == board.getCenter_Center(board)
+        && !(board.getCenter_Left(board) == "-") 
         && board.getCenter_Right(board) == "-"){
             board.setCenter_Right("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Left(board) == board.getCenter_Right(board) 
+        if(board.getCenter_Left(board) == board.getCenter_Right(board)
+        && !(board.getCenter_Left(board) == "-") 
         && board.getCenter_Center(board) == "-"){
             board.setCenter_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Center(board) == board.getCenter_Right(board) 
+        if(board.getCenter_Center(board) == board.getCenter_Right(board)
+        && !(board.getCenter_Center(board) == "-") 
         && board.getCenter_Left(board) == "-"){
             board.setCenter_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getBottom_Left(board) == board.getBottom_Center(board) 
+        if(board.getBottom_Left(board) == board.getBottom_Center(board)
+        && !(board.getBottom_Left(board) == "-") 
         && board.getBottom_Right(board) == "-"){
             board.setBottom_Right("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getBottom_Left(board) == board.getBottom_Right(board) 
+        if(board.getBottom_Left(board) == board.getBottom_Right(board)
+        && !(board.getBottom_Left(board) == "-") 
         && board.getBottom_Center(board) == "-"){
             board.setBottom_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getBottom_Center(board) == board.getBottom_Right(board) 
+        if(board.getBottom_Center(board) == board.getBottom_Right(board)
+        && !(board.getBottom_Center(board) == "-") 
         && board.getBottom_Left(board) == "-"){
             board.setBottom_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Left(board) == board.getCenter_Left(board) 
+        if(board.getTop_Left(board) == board.getCenter_Left(board)
+        && !(board.getTop_Left(board) == "-") 
         && board.getBottom_Left(board) == "-"){
             board.setBottom_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Left(board) == board.getBottom_Left(board) 
+        if(board.getTop_Left(board) == board.getBottom_Left(board)
+        && !(board.getTop_Left(board) == "-") 
         && board.getCenter_Left(board) == "-"){
             board.setCenter_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Left(board) == board.getBottom_Left(board) 
+        if(board.getCenter_Left(board) == board.getBottom_Left(board)
+        && !(board.getCenter_Left(board) == "-") 
         && board.getTop_Left(board) == "-"){
             board.setTop_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Center(board) == board.getCenter_Center(board) 
+        if(board.getTop_Center(board) == board.getCenter_Center(board)
+        && !(board.getTop_Center(board) == "-") 
         && board.getBottom_Center(board) == "-"){
             board.setBottom_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Center(board) == board.getBottom_Center(board) 
+        if(board.getTop_Center(board) == board.getBottom_Center(board)
+        && !(board.getTop_Center(board) == "-") 
         && board.getCenter_Center(board) == "-"){
             board.setCenter_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Center(board) == board.getBottom_Center(board) 
+        if(board.getCenter_Center(board) == board.getBottom_Center(board)
+        && !(board.getCenter_Center(board) == "-") 
         && board.getTop_Center(board) == "-"){
             board.setTop_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Right(board) == board.getCenter_Right(board) 
+        if(board.getTop_Right(board) == board.getCenter_Right(board)
+        && !(board.getTop_Right(board) == "-") 
         && board.getBottom_Right(board) == "-"){
             board.setBottom_Right("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Right(board) == board.getBottom_Right(board) 
+        if(board.getTop_Right(board) == board.getBottom_Right(board)
+        && !(board.getTop_Right(board) == "-") 
         && board.getCenter_Right(board) == "-"){
             board.setCenter_Right("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Right(board) == board.getBottom_Right(board) 
+        if(board.getCenter_Right(board) == board.getBottom_Right(board)
+        && !(board.getCenter_Right(board) == "-") 
         && board.getTop_Right(board) == "-"){
             board.setTop_Right("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Left(board) == board.getCenter_Center(board) 
+        if(board.getTop_Left(board) == board.getCenter_Center(board)
+        && !(board.getTop_Left(board) == "-") 
         && board.getBottom_Right(board) == "-"){
             board.setBottom_Right("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Left(board) == board.getBottom_Right(board) 
+        if(board.getTop_Left(board) == board.getBottom_Right(board)
+        && !(board.getTop_Left(board) == "-") 
         && board.getCenter_Center(board) == "-"){
             board.setCenter_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Center(board) == board.getBottom_Right(board) 
+        if(board.getCenter_Center(board) == board.getBottom_Right(board)
+        && !(board.getCenter_Center(board) == "-") 
         && board.getTop_Left(board) == "-"){
             board.setTop_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Right(board) == board.getCenter_Center(board) 
+        if(board.getTop_Right(board) == board.getCenter_Center(board)
+        && !(board.getTop_Right(board) == "-") 
         && board.getBottom_Left(board) == "-"){
             board.setBottom_Left("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getTop_Right(board) == board.getBottom_Left(board) 
+        if(board.getTop_Right(board) == board.getBottom_Left(board)
+        && !(board.getTop_Right(board) == "-") 
         && board.getCenter_Center(board) == "-"){
             board.setCenter_Center("O");
             System.out.println(board);
             return board;
         }
 
-        if(board.getCenter_Center(board) == board.getBottom_Left(board) 
+        if(board.getCenter_Center(board) == board.getBottom_Left(board)
+        && !(board.getCenter_Center(board) == "-") 
         && board.getTop_Right(board) == "-"){
             board.setTop_Right("O");
             System.out.println(board);
@@ -509,20 +535,18 @@ public class Game{
     String start_game = in.nextLine();
 
     Board board = new Board();
-        System.out.println(board.toString());
 
-        System.out.println("You go first, what's your move?");
-        //System.out.println("Enter 1 for top left, 2 for top center, 3 for top right, 4 for center left, and so on");    //This does not make the input instructions the most clear, and is a bit cumbersome to figure out on your own.
         printPositions();
-        System.out.println("Enter the corresponding number to the board positions shown");      //Here I tried to make an option for how I might show the user where their input would take them.
+        System.out.println("You go first, what's your move?");
+        System.out.println("Use the chart above to input the number corresponding to your move.");
 
 // Begin game
         move(board);
-        System.out.println("Nice move! Now it's my turn");
+        System.out.println("Nice move! Now it's my turn.");
         computer(board);
 
         while(check(board) == 0){
-        System.out.println("Okay, now it's your turn");
+        System.out.println("Okay, now it's your turn.");
         move(board);
         if(check(board) == 0){
             System.out.println("Nice move! Now it's my turn");
@@ -532,14 +556,14 @@ public class Game{
 
 // Once game is over, display the message corresponding to the outcome
     if(check(board) == 1){
-        System.out.println("You win!! Thanks for playing");
+        System.out.println("You win!! Thanks for playing.");
     }
     else if(check(board) == 2){
-    System.out.println("You lose!! Thanks for playing");
+    System.out.println("You lose!! Thanks for playing.");
     }
 
     else if(check(board) == 3){
-        System.out.println("It's a draw! Thanks for playing");
+        System.out.println("It's a draw! Thanks for playing.");
     }
 }
 }
